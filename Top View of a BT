@@ -1,0 +1,44 @@
+class Duple
+{
+    Node n1;
+    int col;
+    Duple(){
+    }
+    Duple(int col,Node n1)
+    {
+        this.col=col;
+        this.n1=n1;
+    }
+}
+class Solution
+{
+    //Function to return a list of nodes visible from the top view 
+    //from left to right in Binary Tree.
+    static ArrayList<Integer> topView(Node root)
+    {
+        // add your code
+        TreeMap<Integer,Integer> t =new TreeMap<>();
+        Queue<Duple> q=new LinkedList<>();
+        q.offer(new Duple(0,root));
+        while(!q.isEmpty())
+        {
+            Duple d=q.poll();
+            int col=d.col;
+            Node temp=d.n1;
+            if(!t.containsKey(col))
+             t.put(col,temp.data);
+            if(temp.left!=null)
+            q.offer(new Duple(col-1,temp.left));
+            if(temp.right!=null)
+            q.offer(new Duple(col+1,temp.right));
+        }
+        ArrayList<Integer> ans=new ArrayList<>();
+        for(Integer a1:t.values())
+        {
+            ans.add(a1);
+        }
+        return ans;
+    }
+}
+//TC- O(n)
+//SC-O(2n) //for queue and map
