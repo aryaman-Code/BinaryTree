@@ -1,0 +1,15 @@
+class Solution {
+    //Function to find the height of a binary tree.
+    int height(Node root) 
+    {
+        // code here  
+        if(root ==null)
+        return 0;
+        int lsubtree=height(root.left);
+         int rsubtree=height(root.right);
+        return (1+Math.max(lsubtree,rsubtree));
+    }
+}
+// can be solve using recursion as well as level order traversal
+TC-O(n)
+SC-AuxiliaryO(height) or O(n)  // for stack space
