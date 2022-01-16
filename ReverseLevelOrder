@@ -1,0 +1,32 @@
+ public ArrayList<Integer> reverseLevelOrder(Node node) 
+    {
+        // code here
+        ArrayList<Integer> ans=new ArrayList<>();
+        Stack<Integer> st=new Stack<>();
+        Node t=node;
+        Queue<Node> q=new LinkedList<>();
+        q.add(t);q.add(null);
+        while(!q.isEmpty())
+        {
+            Node t1=q.poll();
+            if(t1==null&&q.size()>0)
+            {
+                q.offer(null);
+                continue;
+            }
+            if(t1!=null)
+            {
+              if(t1.right!=null)
+               q.offer(t1.right);
+              if(t1.left!=null)
+               q.offer(t1.left);
+             st.push(t1.data);
+             }
+         }
+      while(!st.isEmpty())
+        ans.add(st.pop());
+      return ans;
+    }
+    
+    Time Complexity-O(n) //as we traverse all nodes level wise
+    Space -o(n) // for stack and queue
