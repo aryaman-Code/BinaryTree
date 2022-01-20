@@ -1,0 +1,57 @@
+  public static int minTime(Node root, int target) 
+    {
+        // Your code goes here
+        HashMap<Node,Node> par=new HashMap<>();
+       Queue<Node> q=new LinkedList<>();
+       q.offer(root);
+       Node tar=null;
+       while(q.size()>0)
+       {
+           Node t1=q.poll();
+           if(t1.data==target)
+            tar=t1;
+           if(t1.left!=null)
+           {
+               q.add(t1.left);
+               par.put(t1.left,t1);
+           }
+             if(t1.right!=null)
+           {
+               q.add(t1.right);
+               par.put(t1.right,t1);
+           }
+       }
+       q.add(tar);
+       HashSet<Node> vis=new HashSet<>();
+       vis.add(tar);
+       int dist=0;
+       while(!q.isEmpty())
+       {
+           int size=q.size();
+           for(int i=0;i<size;i++)
+           {
+               Node t1=q.poll();
+               if(t1.left!=null&&(!vis.contains(t1.left)))
+              {
+               q.add(t1.left);
+               vis.add(t1.left);
+               }
+              if(t1.right!=null&&(!vis.contains(t1.right)))
+              {
+               q.add(t1.right);
+               vis.add(t1.right);
+              }
+              if(par.containsKey(t1)&&(!vis.contains(par.get(t1))))
+              {
+               q.add(par.get(t1));
+               vis.add(par.get(t1));
+              }
+           }
+           dist++;
+       }
+       dist--;
+       return dist;
+     }
+     
+     TC-O(n)
+     SC-O(2n)+O(n)+o(n)
