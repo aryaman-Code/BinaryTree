@@ -1,0 +1,53 @@
+// most optimized 
+class Solution {
+    // Function to return the diameter of a Binary Tree.
+    int max=0;
+    int diameter(Node root) {
+        // Your code here
+      solve(root);
+      return max+1;
+    }
+    int solve(Node node)
+    {
+        if(node==null)
+        return 0;
+        int lh=solve(node.left);
+        int rh=solve(node.right);
+        max=Math.max(max,lh+rh);
+        return 1+Math.max(lh,rh);
+    }
+}
+TC-O(n)
+SC-O(n) or O(height)
+
+
+//Naive Approach
+class Solution {
+    int max1=0;
+    
+    int diameter(Node root)
+    {
+        solve(root);
+        return max1+1;
+    }
+     int height(Node root)
+    {
+        if(root==null)
+            return 0;
+        int ls=height(root.left);
+        int rs=height(root.right);
+        return 1+Math.max(ls,rs);
+    }
+    void solve(Node root)
+    {
+        if(root==null)
+            return ;
+        int lh=height(root.left);
+        int rh=height(root.right);
+         max1=Math.max(max1,lh+rh);
+        solve(root.left);
+        solve(root.right);
+    }
+}
+//TC-O(n*n)
+SC-O(n) or O(height)
