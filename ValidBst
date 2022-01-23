@@ -1,0 +1,47 @@
+  boolean isBST(Node root)
+    {
+        // code here
+        int low=Integer.MIN_VALUE;
+        int high=Integer.MAX_VALUE;
+        return check(low,high,root);
+    }
+    boolean check(int low ,int high,Node root)
+    {
+        
+        if(root.left!=null)
+        {
+           if(!check(low,root.data-1,root.left))
+           return false;
+        }
+          if(root.right!=null)
+        {
+             if(!check(root.data+1,high,root.right))
+             return false;
+        }
+        if(root.data>=low&&root.data<=high)
+        return true;
+        else
+        return false;
+    }
+    
+    Approach-2
+        boolean isBST(Node root)
+    {
+        // code here
+        int low=Integer.MIN_VALUE;
+        int high=Integer.MAX_VALUE;
+        return check(low,high,root);
+    }
+    boolean check(int low ,int high,Node root)
+    {
+        
+       if(root==null)
+       return true;
+       if(root.data<=low||root.data>=high)
+        return false;
+        return check(low,root.data,root.left)&&check(root.data,high,root.right);
+    }
+}
+
+TC-O(n)
+SC-O(n) // stack space
