@@ -1,0 +1,65 @@
+   ArrayList<Integer> preOrder(Node root1)
+    {
+        // Code
+        ArrayList<Integer> a=new ArrayList<>();
+           Stack<Node> st=new Stack<>();
+	    st.push(root1);
+	    while(st.size()>0)
+	    {
+	       
+	       Node root=st.pop();
+	        if(root!=null)
+	        {
+	            a.add(root.data);  // Here use print to print the data
+	            if(root.right!=null)
+	            st.push(root.right);
+	            if(root.left!=null)
+	             st.push(root.left);
+	       }
+	    }
+	    return a;
+        }
+        
+        
+        TC-O(n)
+        SC_-O(n)or O(height) for skew otherwise height
+ 
+ INORDER TRAVERSAL
+ 
+ ArrayList<Integer> inOrder(Node root)
+    {
+        // Code
+        ArrayList<Integer> a=new ArrayList<>();
+      
+           Stack<Node> st=new Stack<>();
+	    Node temp=root;
+	    while(true)
+	    {
+	       
+	        if(temp!=null)
+	        {
+	            st.push(temp);
+	            temp=temp.left;
+	        }
+	        else
+	        {
+	           if(st.size()==0)
+	            break;
+	             temp=st.pop();
+	            a.add(temp.data);
+	            temp=temp.right;
+	        }
+	   }//while
+         return a;
+    }
+    
+    
+        TC-O(n)
+        SC_-O(n)or O(height) for skew otherwise height
+    POSTORDER TRAVERSAL
+    
+    
+    
+    
+        TC-O(n)
+        SC_-O(n)or O(height) for skew otherwise height
